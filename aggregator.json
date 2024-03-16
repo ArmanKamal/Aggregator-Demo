@@ -1,0 +1,37 @@
+{
+  "aggregators": [
+    {
+      "id": "89e61dfe-c09f-42ed-a6ed-2483dd4c3e79",
+      "product": {
+        "id": "89e61dfe-c09f-42ed-a6ed-2483dd4c3e79",
+        "title": "Black Watch",
+        "discountId": 3,
+        "description": "This is a beatiful black watch",
+        "productPrice": 31.22
+      },
+      "discount": {
+        "id": 3,
+        "type": "SUMMER",
+        "description": "This is a beautiful black watch",
+        "amount": 31.22
+      },
+      "updated_at": "LocalDateTime"
+    },
+    {
+      "id": "89e61dfe-c09f-42ed-a6ed-2483dd4c3e79",
+      "product": {
+        "id": "89e61dfe-c09f-42ed-a6ed-2483dd4c3e79",
+        "title": "Black Watch",
+        "description": "This is a beatiful black watch",
+        "productPrice": 31.22
+      },
+      "discount": {
+        "id": 3,
+        "type": "SUMMER",
+        "description": "This is a beautiful black watch",
+        "amount": 31.22,
+        "updated_at": "LocalDateTime"
+      }
+    }
+  ]
+}
