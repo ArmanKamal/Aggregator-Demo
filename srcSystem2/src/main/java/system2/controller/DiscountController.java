@@ -41,13 +41,6 @@ public class DiscountController {
         }
         return new ResponseEntity<>("Discount not found",HttpStatus.NOT_FOUND);
     }
-
-    @DeleteMapping("{discountId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    private void deleteDiscount(@PathVariable("discountId") Long id) {
-        discountService.delete(id);
-    }
-
     @GetMapping("")
     private ResponseEntity<List<DiscountResponse>> getAllDiscount() {
         return new ResponseEntity<>(discountService.getDiscounts(), HttpStatus.OK);

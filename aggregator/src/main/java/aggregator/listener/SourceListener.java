@@ -11,6 +11,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Slf4j
@@ -28,9 +29,20 @@ public class SourceListener {
 
     @KafkaListener(topics = "product-0.0", properties = {"spring.json.value.default.type=aggregator.dto.ProductResponse"})
     public void listen(ProductResponse productResponse) {
-
-        Aggregator aggregator = aggregatorRepository.findByProductId(productResponse.getId())
-                .orElseGet(() -> aggregatorMapper.productToAggregatorMapper(productResponse));
+        Optional<Aggregator> aggregatorOptional = aggregatorRepository.findByProductId(productResponse.getId());
+        Aggregator aggregator;
+        if(aggregatorOptional.isEmpty()){
+            aggregator = aggregatorMapper.productToAggregatorMapper(productResponse);
+        }
+        else{
+            aggregator = aggregatorOptional.get();
+            aggregator.setProductId(productResponse.getId());
+            aggregator.setProductDescription(productResponse.getDescription());
+            aggregator.setProductTitle(productResponse.getTitle());
+            aggregator.setProductPrice(productResponse.getProductPrice());
+            aggregator.setDiscountId(productResponse.getDiscountId());
+            aggregator.setProductUpdatedDate(String.valueOf(productResponse.getUpdatedDate()));
+        }
 
         aggregatorRepository.save(aggregator);
 

@@ -46,12 +46,6 @@ public class ProductController {
         return new ResponseEntity<>("Product not found",HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("{productId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    private void deleteProduct(@PathVariable("productId") UUID id) {
-        productService.delete(id);
-    }
-
     @GetMapping("")
     private ResponseEntity<List<ProductResponse>> getAllProduct() {
         return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
